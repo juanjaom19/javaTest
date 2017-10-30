@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/10/2017 04:00:50 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.mycompany.model.Resenas" table="resenas" catalog="resenasonline" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="peliculas" class="com.mycompany.model.Peliculas" fetch="select">
+            <column name="IdPelicula" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="Fecha" length="19" />
+        </property>
+        <property name="resena" type="string">
+            <column name="Resena" />
+        </property>
+        <set name="comentarioses" table="comentarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdResena" not-null="true" />
+            </key>
+            <one-to-many class="com.mycompany.model.Comentarios" />
+        </set>
+    </class>
+</hibernate-mapping>

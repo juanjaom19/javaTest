@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/10/2017 04:00:50 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.mycompany.model.Peliculas" table="peliculas" catalog="resenasonline" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="fechaDeEstreno" type="timestamp">
+            <column name="FechaDeEstreno" length="19" />
+        </property>
+        <property name="poster" type="string">
+            <column name="Poster" />
+        </property>
+        <property name="resena" type="string">
+            <column name="Resena" />
+        </property>
+        <property name="sinopsis" type="string">
+            <column name="Sinopsis" />
+        </property>
+        <property name="titulo" type="string">
+            <column name="Titulo" />
+        </property>
+        <set name="resenases" table="resenas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdPelicula" not-null="true" />
+            </key>
+            <one-to-many class="com.mycompany.model.Resenas" />
+        </set>
+    </class>
+</hibernate-mapping>
